@@ -1,0 +1,22 @@
+[
+  {
+    "id": "test-prod-1",
+    "name": "Test Onion",
+    "brand": "Test Brand",
+    "category": "Vegetables",
+    "unit": "kg",
+    "unit_price": 40.00,
+    "aliases": ["test onion"],
+    "is_active": true
+  },
+  {
+    "id": "test-prod-2",
+    "name": "Test Milk",
+    "brand": "Test Dairy",
+    "category": "Dairy",
+    "unit": "litre",
+    "unit_price": 60.00,
+    "aliases": ["test milk"],
+    "is_active": true
+  }
+]

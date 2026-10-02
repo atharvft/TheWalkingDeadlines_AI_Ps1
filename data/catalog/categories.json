@@ -1,0 +1,11 @@
+[
+  {"id": "cat-1", "name": "Vegetables", "display_order": 1},
+  {"id": "cat-2", "name": "Fruits", "display_order": 2},
+  {"id": "cat-3", "name": "Dairy", "display_order": 3},
+  {"id": "cat-4", "name": "Staples", "display_order": 4},
+  {"id": "cat-5", "name": "Beverages", "display_order": 5},
+  {"id": "cat-6", "name": "Bakery", "display_order": 6},
+  {"id": "cat-7", "name": "Snacks", "display_order": 7},
+  {"id": "cat-8", "name": "Personal Care", "display_order": 8},
+  {"id": "cat-9", "name": "Household", "display_order": 9}
+]

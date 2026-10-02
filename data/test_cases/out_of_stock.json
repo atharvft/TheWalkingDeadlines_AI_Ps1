@@ -1,0 +1,39 @@
+[
+  {
+    "name": "product_out_of_stock",
+    "input": "10 kg onions",
+    "type": "text",
+    "inventory_override": {"prod-1": 5},
+    "expected": {
+      "stock_issue": true,
+      "issue_type": "insufficient_stock",
+      "available": 5,
+      "requested": 10,
+      "clarification_needed": true
+    }
+  },
+  {
+    "name": "product_completely_unavailable",
+    "input": "2 kg exotic fruit",
+    "type": "text",
+    "inventory_override": {},
+    "expected": {
+      "stock_issue": true,
+      "issue_type": "out_of_stock",
+      "available": 0,
+      "clarification_needed": true
+    }
+  },
+  {
+    "name": "low_stock_warning",
+    "input": "3 kg tomatoes",
+    "type": "text",
+    "inventory_override": {"prod-2": 4},
+    "expected": {
+      "stock_issue": true,
+      "issue_type": "low_stock",
+      "available": 4,
+      "clarification_needed": false
+    }
+  }
+]

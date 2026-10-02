@@ -1,0 +1,56 @@
+[
+  {
+    "name": "simple_order_hindi",
+    "input": "do kilo pyaz aur ek litre doodh",
+    "type": "text",
+    "expected": {
+      "items_count": 2,
+      "items": [
+        {"product": "onion", "quantity": 2, "unit": "kg"},
+        {"product": "milk", "quantity": 1, "unit": "litre"}
+      ],
+      "should_confirm": true
+    }
+  },
+  {
+    "name": "simple_order_english",
+    "input": "2 kg onions, 1 litre milk, 5 bananas",
+    "type": "text",
+    "expected": {
+      "items_count": 3,
+      "items": [
+        {"product": "onion", "quantity": 2, "unit": "kg"},
+        {"product": "milk", "quantity": 1, "unit": "litre"},
+        {"product": "banana", "quantity": 5, "unit": "piece"}
+      ],
+      "should_confirm": true
+    }
+  },
+  {
+    "name": "mixed_order",
+    "input": "teen kilo tamatar, paanch kela, adha kilo mirch",
+    "type": "text",
+    "expected": {
+      "items_count": 3,
+      "items": [
+        {"product": "tomato", "quantity": 3, "unit": "kg"},
+        {"product": "banana", "quantity": 5, "unit": "piece"},
+        {"product": "chilli", "quantity": 0.5, "unit": "kg"}
+      ],
+      "should_confirm": true
+    }
+  },
+  {
+    "name": "order_with_brand",
+    "input": "amul doodh 2 litre, aashirvaad atta 5 kg",
+    "type": "text",
+    "expected": {
+      "items_count": 2,
+      "items": [
+        {"product": "milk", "brand": "amul", "quantity": 2, "unit": "litre"},
+        {"product": "wheat flour", "brand": "aashirvaad", "quantity": 5, "unit": "kg"}
+      ],
+      "should_confirm": true
+    }
+  }
+]

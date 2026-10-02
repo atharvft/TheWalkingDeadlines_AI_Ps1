@@ -1,0 +1,112 @@
+[
+  {
+    "id": "prod-1",
+    "name": "Onion",
+    "brand": "Generic",
+    "category": "Vegetables",
+    "unit": "kg",
+    "unit_price": 40.00,
+    "description": "Fresh red onions",
+    "aliases": ["pyaz", "pyaaz", "onions"],
+    "is_active": true
+  },
+  {
+    "id": "prod-2",
+    "name": "Tomato",
+    "brand": "Generic",
+    "category": "Vegetables",
+    "unit": "kg",
+    "unit_price": 30.00,
+    "description": "Fresh red tomatoes",
+    "aliases": ["tamatar", "tomatoes"],
+    "is_active": true
+  },
+  {
+    "id": "prod-3",
+    "name": "Potato",
+    "brand": "Generic",
+    "category": "Vegetables",
+    "unit": "kg",
+    "unit_price": 25.00,
+    "description": "Fresh potatoes",
+    "aliases": ["aloo", "potatoes"],
+    "is_active": true
+  },
+  {
+    "id": "prod-4",
+    "name": "Milk",
+    "brand": "Amul",
+    "category": "Dairy",
+    "unit": "litre",
+    "unit_price": 60.00,
+    "description": "Full cream milk",
+    "aliases": ["doodh", "milk"],
+    "is_active": true
+  },
+  {
+    "id": "prod-5",
+    "name": "Banana",
+    "brand": "Generic",
+    "category": "Fruits",
+    "unit": "piece",
+    "unit_price": 5.00,
+    "description": "Fresh bananas",
+    "aliases": ["kela", "bananas"],
+    "is_active": true
+  },
+  {
+    "id": "prod-6",
+    "name": "Apple",
+    "brand": "Generic",
+    "category": "Fruits",
+    "unit": "kg",
+    "unit_price": 180.00,
+    "description": "Fresh red apples",
+    "aliases": ["seb", "apples"],
+    "is_active": true
+  },
+  {
+    "id": "prod-7",
+    "name": "Wheat Flour",
+    "brand": "Aashirvaad",
+    "category": "Staples",
+    "unit": "kg",
+    "unit_price": 45.00,
+    "description": "Whole wheat flour",
+    "aliases": ["atta", "flour", "wheat flour"],
+    "is_active": true
+  },
+  {
+    "id": "prod-8",
+    "name": "Rice",
+    "brand": "India Gate",
+    "category": "Staples",
+    "unit": "kg",
+    "unit_price": 55.00,
+    "description": "Basmati rice",
+    "aliases": ["chawal", "rice"],
+    "is_active": true
+  },
+  {
+    "id": "prod-9",
+    "name": "Cooking Oil",
+    "brand": "Fortune",
+    "category": "Staples",
+    "unit": "litre",
+    "unit_price": 140.00,
+    "description": "Refined sunflower oil",
+    "aliases": ["tel", "oil", "cooking oil"],
+    "is_active": true
+  },
+  {
+    "id": "prod-10",
+    "name": "Salt",
+    "brand": "Tata",
+    "category": "Staples",
+    "unit": "kg",
+    "unit_price": 20.00,
+    "description": "Iodized salt",
+    "aliases": ["namak", "salt"],
+    "is_active": true
+  }
+]

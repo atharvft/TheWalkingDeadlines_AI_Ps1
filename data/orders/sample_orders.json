@@ -1,0 +1,32 @@
+[
+  {
+    "text": "2 kg onions, 1 litre milk, 5 bananas",
+    "expected_items": [
+      {"product_expression": "onions", "quantity": 2, "unit": "kg"},
+      {"product_expression": "milk", "quantity": 1, "unit": "litre"},
+      {"product_expression": "bananas", "quantity": 5, "unit": "piece"}
+    ]
+  },
+  {
+    "text": "do kilo pyaz aur ek litre doodh",
+    "expected_items": [
+      {"product_expression": "pyaz", "quantity": 2, "unit": "kg"},
+      {"product_expression": "doodh", "quantity": 1, "unit": "litre"}
+    ]
+  },
+  {
+    "text": "5 tomatoes, half kg potatoes, 1 dozen eggs",
+    "expected_items": [
+      {"product_expression": "tomatoes", "quantity": 5, "unit": "piece"},
+      {"product_expression": "potatoes", "quantity": 0.5, "unit": "kg"},
+      {"product_expression": "eggs", "quantity": 1, "unit": "dozen"}
+    ]
+  },
+  {
+    "text": "2 packets of bread and 1 kg rice",
+    "expected_items": [
+      {"product_expression": "bread", "quantity": 2, "unit": "packet"},
+      {"product_expression": "rice", "quantity": 1, "unit": "kg"}
+    ]
+  }
+]

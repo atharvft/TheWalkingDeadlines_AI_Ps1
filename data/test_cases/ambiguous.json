@@ -1,0 +1,42 @@
+[
+  {
+    "name": "ambiguous_product_name",
+    "input": "5 seb",
+    "type": "text",
+    "expected": {
+      "ambiguity_type": "low_confidence",
+      "clarification_needed": true,
+      "reason": "Could be apple or a brand name"
+    }
+  },
+  {
+    "name": "brand_mismatch",
+    "input": "patanjali atta 2 kg",
+    "type": "text",
+    "expected": {
+      "ambiguity_type": "brand_mismatch",
+      "clarification_needed": true,
+      "reason": "Requested Patanjali but catalog has Aashirvaad"
+    }
+  },
+  {
+    "name": "unit_mismatch",
+    "input": "1 kg milk",
+    "type": "text",
+    "expected": {
+      "ambiguity_type": "unit_mismatch",
+      "clarification_needed": true,
+      "reason": "Milk sold in litres, not kg"
+    }
+  },
+  {
+    "name": "multiple_matches",
+    "input": "2 packets biscuits",
+    "type": "text",
+    "expected": {
+      "ambiguity_type": "low_confidence",
+      "clarification_needed": true,
+      "reason": "Multiple biscuit brands available"
+    }
+  }
+]

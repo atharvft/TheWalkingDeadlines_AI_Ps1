@@ -1,0 +1,59 @@
+{
+  "vegetables": {
+    "pyaz": "onion",
+    "pyaaz": "onion",
+    "onions": "onion",
+    "tamatar": "tomato",
+    "tomatoes": "tomato",
+    "aloo": "potato",
+    "potatoes": "potato",
+    "mirch": "chilli",
+    "chillies": "chilli",
+    "gajar": "carrot",
+    "carrots": "carrot",
+    "bhindi": "okra",
+    "ladyfinger": "okra",
+    "karela": "bitter gourd",
+    "lauki": "bottle gourd",
+    "kaddu": "pumpkin"
+  },
+  "fruits": {
+    "kela": "banana",
+    "bananas": "banana",
+    "seb": "apple",
+    "apples": "apple",
+    "aam": "mango",
+    "mangoes": "mango",
+    "nariyal": "coconut",
+    "coconuts": "coconut"
+  },
+  "dairy": {
+    "doodh": "milk",
+    "dahi": "curd",
+    "yogurt": "curd",
+    "paneer": "cottage cheese"
+  },
+  "staples": {
+    "atta": "wheat flour",
+    "flour": "wheat flour",
+    "chawal": "rice",
+    "dal": "lentils",
+    "tel": "oil",
+    "namak": "salt",
+    "cheeni": "sugar",
+    "shakkar": "sugar"
+  },
+  "beverages": {
+    "chai": "tea",
+    "coffee": "coffee"
+  },
+  "bakery": {
+    "bread": "bread",
+    "pav": "bread"
+  },
+  "others": {
+    "anda": "egg",
+    "eggs": "egg",
+    "ande": "egg"
+  }
+}
