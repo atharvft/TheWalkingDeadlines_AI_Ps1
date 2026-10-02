@@ -12,7 +12,7 @@ class TestVoiceToOrder:
 
         response = await client.post("/api/orders/voice", files=files)
         # Should either process or return appropriate error
-        assert response.status_code in [200, 400, 501]
+        assert response.status_code in [200, 400, 422, 503]
 
     @pytest.mark.asyncio
     async def test_transcription_endpoint(self, client: AsyncClient):
@@ -20,9 +20,9 @@ class TestVoiceToOrder:
         files = {"audio": ("test.webm", io.BytesIO(audio_data), "audio/webm")}
 
         response = await client.post("/api/transcription", files=files)
-        assert response.status_code in [200, 400, 501]
+        assert response.status_code in [200, 400, 422, 503]
 
         if response.status_code == 200:
             data = response.json()
-            assert "text" in data
-            assert "confidence" in data
+            assert "transcript" in data
+            assert data["provider"] == "openai"

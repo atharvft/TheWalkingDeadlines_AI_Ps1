@@ -5,7 +5,7 @@ from app.schemas.order import ClarificationQuestion
 
 class ClarificationService:
     def __init__(self):
-        pass
+        self.default_question_type = "product"
 
     async def generate_questions(
         self,
@@ -48,5 +48,8 @@ class ClarificationService:
         parsed_order,
         matched_products: List[dict]
     ) -> dict:
-        # TODO: Process clarification answer and return updated order state
-        return {"question_index": question_index, "answer": answer, "processed": True}
+        return {
+            "question_index": question_index,
+            "answer": answer.strip(),
+            "processed": bool(answer.strip()),
+        }

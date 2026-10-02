@@ -8,9 +8,10 @@ python-dotenv==1.0.0
 httpx==0.26.0
 python-json-logger==2.0.7
 
-# AI/ML Dependencies (pure Python alternatives)
+# AI provider and deterministic matching dependencies
 rapidfuzz==3.7.0
 nltk==3.8.1
+openai>=1.68.0,<2.0.0
 
 # Testing
 pytest==7.4.4

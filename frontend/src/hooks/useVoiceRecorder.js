@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from 'react'
 import { createAudioRecorder } from '../services/transcription'
 
-export function useVoiceRecorder({ onTranscript }) {
+export function useVoiceRecorder({ onTranscript, onError }) {
   const [isRecording, setIsRecording] = useState(false)
   const recorderRef = useRef(null)
   const streamRef = useRef(null)
@@ -13,6 +13,7 @@ export function useVoiceRecorder({ onTranscript }) {
       setIsRecording(true)
     } catch (err) {
       console.error('Failed to start recording:', err)
+      onError?.(err.message || 'Microphone access was denied. Allow microphone access and try again.')
     }
   }, [])
 
@@ -27,8 +28,9 @@ export function useVoiceRecorder({ onTranscript }) {
     } catch (err) {
       console.error('Failed to stop recording:', err)
       setIsRecording(false)
+      onError?.(err.message || 'No audio was captured. Please try again.')
     }
-  }, [onTranscript])
+  }, [onTranscript, onError])
 
   return { isRecording, startRecording, stopRecording }
 }

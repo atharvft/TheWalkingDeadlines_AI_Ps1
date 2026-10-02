@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Any
 from datetime import datetime
 
 
@@ -25,7 +25,11 @@ class OrderItemResponse(OrderItemBase):
 
 
 class OrderCreate(BaseModel):
-    text: str = Field(..., min_length=1)
+    text: str
+    provider: Optional[str] = None
+    customer_name: Optional[str] = None
+    customer_phone: Optional[str] = None
+    customer_address: Optional[str] = None
 
 
 class OrderUpdate(BaseModel):
@@ -57,7 +61,20 @@ class ClarificationQuestion(BaseModel):
     question: str
     options: List[str] = []
     question_type: str
+    item_index: Optional[int] = None
+    code: Optional[str] = None
+    suggestions: List[Any] = []
 
 
 class ClarificationResponse(BaseModel):
     questions: List[ClarificationQuestion]
+
+
+class OrderProcessResponse(BaseModel):
+    """Envelope consumed by the frontend while keeping the order explicit."""
+
+    order: OrderResponse
+    status: str
+    clarification_questions: List[ClarificationQuestion] = []
+    transcript: Optional[str] = None
+    evidence: List[Any] = []

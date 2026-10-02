@@ -28,6 +28,19 @@ export default function ClarificationPanel({ questions, onAnswer, onSkip }) {
                 className="w-full p-2 border border-amber-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
             )}
+            {q.suggestions?.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {q.suggestions.map((suggestion, i) => (
+                  <button
+                    key={i}
+                    onClick={() => onAnswer?.(index, suggestion.product_name)}
+                    className="px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 text-sm"
+                  >
+                    Use {suggestion.product_name}
+                  </button>
+                ))}
+              </div>
+            )}
             {onSkip && (
               <button
                 onClick={() => onSkip(index)}

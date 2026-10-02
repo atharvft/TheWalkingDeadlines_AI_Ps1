@@ -1,16 +1,12 @@
 import api from './api'
 
-export async function createOrder(text) {
-  const response = await api.post('/orders', { text })
+export async function createOrder(text, customer = {}) {
+  const response = await api.post('/orders', { text, ...customer })
   return response.data
 }
 
-export async function submitVoiceOrder(audioBlob) {
-  const formData = new FormData()
-  formData.append('audio', audioBlob)
-  const response = await api.post('/orders/voice', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  })
+export async function parseOrder(text, provider) {
+  const response = await api.post('/orders/parse', { text, provider })
   return response.data
 }
 

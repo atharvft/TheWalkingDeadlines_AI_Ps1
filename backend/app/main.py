@@ -9,12 +9,13 @@ from app.api.router import api_router
 from app.db.database import engine
 from app.db.base import Base
 from app.models import product, inventory, order, order_item, conversation_state
+from app.dependencies import initialize_database
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     setup_logging()
-    Base.metadata.create_all(bind=engine)
+    initialize_database()
     yield
 
 

@@ -30,3 +30,7 @@ class Order(Base):
     confirmed_at = Column(Integer, nullable=True)
 
     items = relationship("OrderItem", back_populates="order", cascade="all, delete-orphan")
+
+
+# Backwards-compatible re-export used by the scaffold tests and services.
+from app.models.order_item import OrderItem  # noqa: E402,F401

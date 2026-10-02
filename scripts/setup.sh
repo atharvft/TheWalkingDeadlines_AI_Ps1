@@ -5,12 +5,16 @@ set -e
 
 echo "🚀 Setting up Hinglish Order Desk..."
 
-# Check Python version
-python3 --version
+# Check Python version. The pinned FastAPI/Pydantic stack is tested on 3.11.
+PYTHON_BIN="${PYTHON_BIN:-python3.11}"
+if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+    PYTHON_BIN=python3
+fi
+"$PYTHON_BIN" --version
 
 # Create virtual environment
 echo "📦 Creating virtual environment..."
-python3 -m venv venv
+"$PYTHON_BIN" -m venv venv
 source venv/bin/activate
 
 # Upgrade pip

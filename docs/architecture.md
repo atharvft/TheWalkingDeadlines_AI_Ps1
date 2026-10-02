@@ -40,12 +40,12 @@ This document describes the system architecture for the Hinglish Order Desk, a p
 - **Repositories** (`app/repositories/`): Data access layer
 - **State** (`app/state/`): In-memory order conversation state
 
-### AI/ML (`ai/`)
-- **ASR** (`ai/asr/`): Whisper-based speech-to-text
-- **NLP** (`ai/nlp/`): Hinglish parsing & normalization
+### Language and provider services
+- **Speech** (`backend/app/services/speech/`): OpenAI Speech-to-Text
+- **AI providers** (`backend/app/services/ai/`): OpenAI/Gemini structured extraction through one router
+- **NLP** (`ai/nlp/`): deterministic Hinglish parsing & normalization fallback
 - **Matching** (`ai/matching/`): Fuzzy + semantic product matching
 - **Rules** (`ai/rules/`): Ambiguity, stock, quantity, unit validation
-- **Models** (`ai/models/`): Model configuration
 
 ### Data (`data/`)
 - Static catalog, aliases, categories
@@ -62,13 +62,14 @@ User Input (Text/Voice)
 Frontend (Input UI)
          │
          ▼
-Backend API (/api/orders or /api/orders/voice)
+Backend API (`/api/transcribe`, `/api/orders`, or `/api/orders/parse`)
          │
          ▼
 Order Service (Orchestration)
          │
-         ├──▶ AI ASR (voice only)
-         ├──▶ AI NLP (parse Hinglish)
+         ├──▶ OpenAI Speech-to-Text (voice only)
+         ├──▶ Gemini/OpenAI structured extraction
+         ├──▶ deterministic NLP fallback when provider credentials are unavailable
          ├──▶ AI Matching (catalog match)
          ├──▶ AI Rules (validate)
          │

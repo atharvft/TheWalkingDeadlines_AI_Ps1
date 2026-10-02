@@ -24,7 +24,9 @@ export default function OrderDesk() {
     answerClarification,
     skipClarification,
     confirmOrder,
-    resetOrder
+    resetOrder,
+    voiceState,
+    transcript
   } = useOrder()
 
   const { isRecording, startRecording, stopRecording } = useVoiceRecorder({
@@ -67,6 +69,22 @@ export default function OrderDesk() {
                 disabled={isLoading}
               />
             </div>
+            {voiceState !== 'IDLE' && (
+              <p className="text-center text-sm text-gray-600" role="status">
+                {{
+                  UPLOADING: 'Uploading audio…',
+                  TRANSCRIBING: 'Transcribing your order…',
+                  PROCESSING_ORDER: 'Understanding order and checking products…',
+                  SUCCESS: 'Order understood.',
+                  ERROR: 'Voice processing failed. Please try again.'
+                }[voiceState] || 'Ready'}
+              </p>
+            )}
+            {transcript && (
+              <p className="rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-700">
+                <span className="font-medium">Transcript:</span> {transcript}
+              </p>
+            )}
           </div>
         </div>
       </div>

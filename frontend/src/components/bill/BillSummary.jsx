@@ -1,9 +1,10 @@
 export default function BillSummary({ order, currency = '₹' }) {
   if (!order?.items?.length) return null
 
-  const subtotal = order.items.reduce((sum, item) => sum + (item.unit_price * item.quantity), 0)
-  const tax = subtotal * 0.18
-  const total = subtotal + tax
+  const previewSubtotal = order.items.reduce((sum, item) => sum + (item.unit_price * item.quantity), 0)
+  const subtotal = order.status === 'confirmed' ? Number(order.subtotal) : previewSubtotal
+  const tax = order.status === 'confirmed' ? Number(order.tax) : 0
+  const total = order.status === 'confirmed' ? Number(order.total_amount) : subtotal
 
   return (
     <div className="bg-gray-50 rounded-lg p-4">
@@ -21,7 +22,7 @@ export default function BillSummary({ order, currency = '₹' }) {
             <span>{currency}{subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span>Tax (18%)</span>
+            <span>{order.status === 'confirmed' ? 'Tax (18%)' : 'Tax calculated at confirmation'}</span>
             <span>{currency}{tax.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-semibold text-lg border-t pt-2">

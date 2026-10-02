@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-from typing import List
-from app.models.order import OrderItem
+from decimal import Decimal, ROUND_HALF_UP
 
 
 @dataclass
@@ -16,10 +15,14 @@ class BillingService:
         self.tax_rate = tax_rate
 
     async def calculate_bill(self, order) -> Bill:
-        subtotal = sum(float(item.quantity) * float(item.unit_price) for item in order.items)
-        tax = subtotal * self.tax_rate
-        total = subtotal + tax
-        return Bill(subtotal=subtotal, tax=tax, total=total, tax_rate=self.tax_rate)
+        money = Decimal("0.01")
+        subtotal_decimal = sum(
+            (Decimal(str(item.quantity)) * Decimal(str(item.unit_price))).quantize(money, rounding=ROUND_HALF_UP)
+            for item in order.items
+        )
+        tax_decimal = (subtotal_decimal * Decimal(str(self.tax_rate))).quantize(money, rounding=ROUND_HALF_UP)
+        total_decimal = subtotal_decimal + tax_decimal
+        return Bill(subtotal=float(subtotal_decimal), tax=float(tax_decimal), total=float(total_decimal), tax_rate=self.tax_rate)
 
     async def generate_delivery_note(self, order) -> dict:
         bill = await self.calculate_bill(order)

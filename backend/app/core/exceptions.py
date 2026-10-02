@@ -2,9 +2,10 @@ from fastapi import HTTPException, status
 
 
 class OrderDeskException(Exception):
-    def __init__(self, message: str, code: str = "INTERNAL_ERROR"):
+    def __init__(self, message: str, code: str = "INTERNAL_ERROR", details=None):
         self.message = message
         self.code = code
+        self.details = details
         super().__init__(message)
 
 
@@ -42,8 +43,20 @@ def http_exception_from_orderdesk(exc: OrderDeskException) -> HTTPException:
         "INSUFFICIENT_STOCK": status.HTTP_409_CONFLICT,
         "AMBIGUITY_DETECTED": status.HTTP_422_UNPROCESSABLE_ENTITY,
         "INVALID_ORDER_STATE": status.HTTP_400_BAD_REQUEST,
+        "INVALID_ORDER": status.HTTP_400_BAD_REQUEST,
+        "QUESTION_NOT_FOUND": status.HTTP_400_BAD_REQUEST,
+        "NO_CLARIFICATION": status.HTTP_400_BAD_REQUEST,
+        "CLARIFICATION_REQUIRED": status.HTTP_409_CONFLICT,
+        "ORDER_NOT_CONFIRMED": status.HTTP_409_CONFLICT,
+        "TRANSCRIPTION_FAILED": status.HTTP_422_UNPROCESSABLE_ENTITY,
+        "EMPTY_TRANSCRIPT": status.HTTP_422_UNPROCESSABLE_ENTITY,
+        "INVALID_CLARIFICATION": status.HTTP_422_UNPROCESSABLE_ENTITY,
+        "AI_CONFIGURATION": status.HTTP_503_SERVICE_UNAVAILABLE,
+        "AI_UNAVAILABLE": status.HTTP_503_SERVICE_UNAVAILABLE,
+        "AUDIO_TOO_LARGE": status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+        "UNSUPPORTED_AUDIO": status.HTTP_400_BAD_REQUEST,
     }
     return HTTPException(
         status_code=status_codes.get(exc.code, status.HTTP_500_INTERNAL_SERVER_ERROR),
-        detail={"message": exc.message, "code": exc.code}
+        detail={"message": exc.message, "code": exc.code, "details": exc.details}
     )

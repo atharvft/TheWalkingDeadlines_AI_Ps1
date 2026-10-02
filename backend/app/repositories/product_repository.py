@@ -40,10 +40,14 @@ class ProductRepository:
             name=product.name,
             brand=product.brand,
             category=product.category,
+            subcategory=product.subcategory,
             unit=product.unit,
+            pack_size=product.pack_size,
             unit_price=product.unit_price,
             description=product.description,
             aliases=",".join(product.aliases) if product.aliases else None,
+            source_product_id=product.source_product_id,
+            source_dataset=product.source_dataset,
             is_active=product.is_active
         )
         self.session.add(db_product)

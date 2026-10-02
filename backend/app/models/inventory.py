@@ -13,3 +13,6 @@ class Inventory(Base):
     last_updated = Column(Integer, nullable=True)
 
     product = relationship("Product")
+
+    def available_quantity(self) -> float:
+        return float(self.stock_quantity or 0) - float(self.reserved_quantity or 0)

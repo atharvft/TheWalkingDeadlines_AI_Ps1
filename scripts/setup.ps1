@@ -2,12 +2,16 @@
 
 Write-Host '🚀 Setting up Hinglish Order Desk...' -ForegroundColor Green
 
-# Check Python version
-python --version
+# Check Python version. The pinned FastAPI/Pydantic stack is tested on 3.11.
+$pythonCommand = 'python3.11'
+if (-not (Get-Command $pythonCommand -ErrorAction SilentlyContinue)) {
+    $pythonCommand = 'python'
+}
+& $pythonCommand --version
 
 # Create virtual environment
 Write-Host '📦 Creating virtual environment...' -ForegroundColor Cyan
-python -m venv venv
+& $pythonCommand -m venv venv
 .\venv\Scripts\Activate.ps1
 
 # Upgrade pip

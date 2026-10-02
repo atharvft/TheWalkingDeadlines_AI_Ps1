@@ -1,7 +1,7 @@
 from typing import List, Optional
 from app.repositories.inventory_repository import InventoryRepository
 from app.models.inventory import Inventory
-from app.models.order import OrderItem
+from app.models.order_item import OrderItem
 from app.core.exceptions import InsufficientStockError
 
 

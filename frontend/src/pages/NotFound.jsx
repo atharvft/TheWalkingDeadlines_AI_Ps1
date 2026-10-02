@@ -1,10 +1,10 @@
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-6xl font-bold text-gray-300">404</h1>
-        <p className="text-xl text-gray-600 mt-4">Page not found</p>
-        <a href="/" className="text-blue-600 hover:underline mt-4 inline-block">Go home</a>
+    <div className="empty-state">
+      <div className="empty-icon">404</div>
+      <div>
+        <h3>Page not found</h3>
+        <p><a href="/">Return to your workspace</a></p>
       </div>
     </div>
   )

@@ -1,7 +1,8 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from app.models.order import Order, OrderItem, OrderStatus
+from app.models.order import Order, OrderStatus
+from app.models.order_item import OrderItem
 from app.models.conversation_state import ConversationState
 
 

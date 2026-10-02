@@ -20,3 +20,7 @@ def setup_logging():
 
     logging.getLogger("uvicorn").setLevel(log_level)
     logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
+    # Provider HTTP logs can contain request URLs or payload metadata. Keep
+    # provider credentials and customer order text out of server logs.
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)

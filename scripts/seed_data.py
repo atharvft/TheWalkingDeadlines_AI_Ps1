@@ -15,8 +15,11 @@ def seed_database():
 
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
-    # Read catalog data
-    with open(os.path.join(catalog_dir, "products.json")) as f:
+    # Prefer the normalized BigBasket output when it exists. The curated file
+    # remains a small offline fallback for demos and tests.
+    normalized_path = os.path.join(catalog_dir, "normalized_products.json")
+    products_path = normalized_path if os.path.exists(normalized_path) else os.path.join(catalog_dir, "products.json")
+    with open(products_path) as f:
         products = json.load(f)
 
     with open(os.path.join(catalog_dir, "categories.json")) as f:
@@ -33,10 +36,15 @@ def seed_database():
             name TEXT NOT NULL,
             brand TEXT,
             category TEXT,
+            subcategory TEXT,
             unit TEXT NOT NULL,
+            pack_size TEXT,
             unit_price REAL NOT NULL,
             description TEXT,
             aliases TEXT,
+            normalized_name TEXT,
+            source_product_id TEXT,
+            source_dataset TEXT,
             is_active INTEGER DEFAULT 1
         )
     """)
@@ -70,17 +78,22 @@ def seed_database():
     # Insert products and inventory
     for prod in products:
         cursor.execute("""
-            INSERT OR REPLACE INTO products (id, name, brand, category, unit, unit_price, description, aliases, is_active)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT OR REPLACE INTO products (id, name, brand, category, subcategory, unit, pack_size, unit_price, description, aliases, normalized_name, source_product_id, source_dataset, is_active)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             prod["id"],
             prod["name"],
             prod.get("brand"),
             prod.get("category"),
+            prod.get("subcategory"),
             prod["unit"],
+            prod.get("pack_size"),
             prod["unit_price"],
             prod.get("description"),
             json.dumps(prod.get("aliases", [])),
+            prod.get("normalized_name", prod.get("name", "").lower()),
+            prod.get("source_product_id"),
+            prod.get("source_dataset", "curated_demo_fallback"),
             1 if prod.get("is_active", True) else 0
         ))
 
@@ -94,7 +107,7 @@ def seed_database():
     conn.close()
 
     print(f"✅ Database seeded at {db_path}")
-    print(f"   Products: {len(products)}")
+    print(f"   Products: {len(products)} ({'normalized BigBasket' if products_path == normalized_path else 'curated fallback'})")
     print(f"   Categories: {len(categories)}")
 
 
